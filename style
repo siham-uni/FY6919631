@@ -1,0 +1,119 @@
+/* -------- BASIC PAGE LOOK -------- */
+
+body {
+  font-family: "Segoe UI", Calibri, sans-serif;
+  background: #e9f2ff;               /* soft blue background */
+  margin: 0;
+  padding: 0 20px 40px 20px;
+  color: #002649;
+}
+
+/* -------- HEADERS -------- */
+
+h1, h2, h3 {
+  color: #074a9c;
+  text-shadow: 0 1px 0 white;
+}
+
+h2 u, h3 u {
+  text-decoration-color: #5ca7ff;
+}
+
+/* -------- INFO BLOCK -------- */
+
+.infoblock {
+  background: #ffffff;
+  padding: 15px;
+  border-left: 5px solid #5ca7ff;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* -------- PAGE SECTIONS -------- */
+
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  border: 1px solid #dce8ff;
+}
+
+/* -------- LINKS -------- */
+
+a {
+  color: #0077ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #004a99;
+  text-decoration: underline;
+}
+
+/* -------- NOTE & TEXT -------- */
+
+.note {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* -------- BUTTONS -------- */
+
+button {
+  background: #5ca7ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.9em;
+}
+
+button:hover {
+  background: #3e8fe6;
+}
+
+button:active {
+  background: #2f6db4;
+}
+
+/* -------- PARAGRAPHS -------- */
+
+p {
+  background: #ffffff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin: 12px 0;
+  border-left: 4px solid #bcd9ff;
+}
+
+/* -------- TABLE OF CONTENTS -------- */
+
+ol li {
+  padding: 6px 0;
+}
+
+/* -------- SPACING -------- */
+
+hr {
+  border: none;
+  height: 2px;
+  background: #5ca7ff;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* -------- RESPONSIVE IMG -------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
