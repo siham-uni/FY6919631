@@ -103,14 +103,14 @@
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
-    const MainArticleCount = displayWordCount("Main_Article");
+    const MainArticleCount = displayWordCount("Main_Article_InText");
     const AnalysisAndDiscussionCount = displayWordCount("Analysis_and_Discussion_InText");
     // Calculate the sum of all selected sections
     const totalWordCount = MainArticleCount + AnalysisAndDiscussionCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
-    // Run the function for specific sections and display total count when the page loads
+  //Run the function for specific sections and display total count when page loads
   window.onload = displayTotalWordCount;
 </script>
 <!-- ================= TABLE OF CONTENTS ================= -->
