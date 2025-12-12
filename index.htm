@@ -71,20 +71,34 @@
   <!-- Scripts -->
   <script>
     // ======================= WORD COUNT =======================
-    function displayWordCount(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (!element) return 0;
-      const text = element.textContent;
-      const wordArray = text.trim().split(/\s+/);
-      return wordArray.filter(word => word.length > 0).length;
-    }
+<!-- ================= TOTAL WORD COUNT ================= -->
+<p id="totalWordCount"></p>
+<hr>
 
-    function displayTotalWordCount() {
-      const MainArticleCount = displayWordCount("Main_Article");
-      const AnalysisCount = displayWordCount("Analysis_and_Discussion_InText");
-      const totalWordCount = MainArticleCount + AnalysisCount;
-      document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-    }
+<script>
+  // ===================== FIXED WORD COUNT FUNCTION =====================
+  // Counts all words inside the main article, including intro and analysis
+  function displayWordCount(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (!element) return 0; // If element doesn't exist
+    const text = element.textContent; 
+    const wordArray = text.trim().split(/\s+/);
+    return wordArray.filter(word => word.length > 0).length;
+  }
+
+  function displayTotalWordCount() {
+    // =================== ADDED ===================
+    // Count all words inside your main article div
+    const totalWords = displayWordCount("main-article");
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWords}`;
+    // =================== END ADDED ===================
+  }
+
+  // =================== ADDED ===================
+  // Run when page loads
+  window.addEventListener("load", displayTotalWordCount);
+  // =================== END ADDED ===================
+</script>
 
     // ======================= GITHUB LAST UPDATED =======================
     async function getLastUpdatedTime() {
@@ -157,8 +171,7 @@ about the ethics, pricing and availability of these materials.
 
 <!-- ================= MAIN ARTICLE ================= -->
 
-<h2 id="main-article">Main Article</h2>
-
+<h2>Main Article</h2>
 <div id="main-article">
 <h3 id="Introduction">Introduction</h3>
 <h3>Current issues with materials used in civil infrastructural techniques</h3>
