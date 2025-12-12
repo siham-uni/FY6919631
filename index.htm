@@ -34,45 +34,16 @@
 <!-- //////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
   <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- Placeholder for total word count -->
-<p id="totalWordCount"></p>
-<hr>
-<script>
-<script>
-function displayWordCount(sectionId, outputId) {
-  const text = document.getElementById("main-article").textContent;
-  const wordArray = text.trim().split(/\s+/);
-  const wordCount = wordArray.length;
-  return wordCount;
-}
-
-function displayTotalWordCount() {
-  const totalWordCount = displayWordCount("main-article");
-  document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-}
-
-if (window.onload) {
-    const oldOnload = window.onload;
-    window.onload = function() {
-        oldOnload();
-        displayTotalWordCount();
-    };
-} else {
-    window.onload = displayTotalWordCount;
-}
-</script>
-      
-      <!-- Last commit time display -->
+    <!-- Last commit time display -->
 <div id="last-updated">Loading last update time...</div>
-      <p id="totalWordCount"></p>
 <!-- Verify Button -->
 <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
     Verify Last Modified Time
 </button>
 <script>
     async function getLastUpdatedTime() {
-        const username = 'siham-uni';
-        const repo = 'FY6919631';
+        const username = 'nr0025';
+        const repo = 'FY0025';
        
         const url = `https://api.github.com/repos/${username}/${repo}/commits`;
         try {
@@ -108,7 +79,12 @@ if (window.onload) {
     // Initial load to display the time on page load
     window.onload = getLastUpdatedTime;
 </script>
-    <!-- Placeholder for total word count -->
+
+
+ <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
 <p id="totalWordCount"></p>
 <hr>
 <script>
@@ -133,7 +109,7 @@ if (window.onload) {
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
-  // Run the function for specific sections and display total count when the page loads
+    // Run the function for specific sections and display total count when the page loads
   window.onload = displayTotalWordCount;
 </script>
 <!-- ================= TABLE OF CONTENTS ================= -->
