@@ -1,0 +1,26 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Timestamp
+  const ts = document.getElementById("page-timestamp");
+  ts.textContent = document.lastModified;
+
+  document.getElementById("verify-timestamp").onclick = () => {
+    document.getElementById("timestamp-note").textContent = " (validated)";
+  };
+
+  // Word count
+  const text = document.getElementById("main-article").innerText;
+  const wordCount = text.trim().split(/\s+/).length;
+
+  document.getElementById("wordcount").textContent = wordCount;
+
+  const note = document.getElementById("wordcount-result");
+  if (wordCount >= 800 && wordCount <= 1000) {
+    note.textContent = " — VALID";
+    note.style.color = "green";
+  } else {
+    note.textContent = " — INVALID";
+    note.style.color = "red";
+  }
+
+});
