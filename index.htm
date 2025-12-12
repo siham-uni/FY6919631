@@ -52,7 +52,7 @@
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
-    const IntroductionCount = displayWordCount("Introduction");
+    const IntroductionCount = displayWordCount("Main-Article");
     const AnalysisCount = displayWordCount("Analysis_and_Discussion");
     // Calculate the sum of all selected sections
     const totalWordCount = IntroductionCount + AnalysisCount;
@@ -65,6 +65,7 @@
       
       <!-- Last commit time display -->
 <div id="last-updated">Loading last update time...</div>
+      <p id="totalWordCount"></p>
 <!-- Verify Button -->
 <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
     Verify Last Modified Time
