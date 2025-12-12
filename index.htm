@@ -38,27 +38,28 @@
 <p id="totalWordCount"></p>
 <hr>
 <script>
-  // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId, outputId) {
-    // Get the text content from the specified section
-    const text = document.getElementById(sectionId).textContent;
-    // Split text into words based on spaces and filter out any empty strings
-    const wordArray = text.trim().split(/\s+/);
-    // Count the words
-    const wordCount = wordArray.length;
-    // Return the word count for summing purposes
-    return wordCount;
-  }
-  // Function to calculate and display total word count from selected sections
-  function displayTotalWordCount() {
-    // Calculate word count for each section and accumulate the total
-    const totalWordCount = displayWordCount("Main-Article");
-    const AnalysisCount = displayWordCount("Analysis_and_Discussion");
-    // Display the total word count
-    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-  }
-  // Run the function for specific sections and display total count when the page loads
-  window.onload = displayTotalWordCount;
+<script>
+function displayWordCount(sectionId, outputId) {
+  const text = document.getElementById("main-article").textContent;
+  const wordArray = text.trim().split(/\s+/);
+  const wordCount = wordArray.length;
+  return wordCount;
+}
+
+function displayTotalWordCount() {
+  const totalWordCount = displayWordCount("main-article");
+  document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+}
+
+if (window.onload) {
+    const oldOnload = window.onload;
+    window.onload = function() {
+        oldOnload();
+        displayTotalWordCount();
+    };
+} else {
+    window.onload = displayTotalWordCount;
+}
 </script>
       
       <!-- Last commit time display -->
