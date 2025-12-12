@@ -52,10 +52,8 @@
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
-    const IntroductionCount = displayWordCount("Main-Article");
+    const totalWordCount = displayWordCount("Main-Article");
     const AnalysisCount = displayWordCount("Analysis_and_Discussion");
-    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
@@ -170,7 +168,7 @@ about the ethics, pricing and availability of these materials.
 
 <!-- ================= MAIN ARTICLE ================= -->
 
-<h2 id="article">Main Article</h2>
+<h2 id="main-article">Main Article</h2>
 
 <div id="main-article">
 <h3 id="Introduction">Introduction</h3>
