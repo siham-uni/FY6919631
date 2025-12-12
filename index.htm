@@ -16,7 +16,6 @@
     <body>
 
 <!-- ================= TIMESTAMP + WORD COUNT ================= -->
-
 <div class="infoblock">
   <p>
     <b>Timestamp:</b> <span id="page-timestamp">—</span>
@@ -30,6 +29,30 @@
   </p>
 </div>
 
+<script>
+  // Set timestamp
+  document.getElementById("page-timestamp").textContent = new Date().toLocaleString();
+
+  // Validate button
+  document.getElementById("verify-timestamp").onclick = function() {
+    const ts = new Date(document.getElementById("page-timestamp").textContent);
+    const diff = new Date() - ts;
+    const note = document.getElementById("timestamp-note");
+    if(diff < 60*1000) { // less than 1 min old
+      note.textContent = "✅ Timestamp is valid.";
+      note.style.color = "green";
+    } else {
+      note.textContent = "❌ Timestamp is too old.";
+      note.style.color = "red";
+    }
+  }
+
+  // Simple word count
+  const content = document.body.innerText || "";
+  const count = content.trim().split(/\s+/).length;
+  document.getElementById("wordcount").textContent = count;
+  document.getElementById("wordcount-result").textContent = "Word count calculated.";
+</script>
 <!-- ================= TABLE OF CONTENTS ================= -->
 
 <h2><u>Table of Contents</u></h2>
