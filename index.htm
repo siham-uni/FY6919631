@@ -1,127 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ENG0018 Computer Laboratory 2025/26</title>
-  <style>
-    body {
-      font-family: Arial;
-      background-color: #f5f5f5;
-      margin: 20px;
-    }
 
-    h1, h2, h3 {
-      color: #2a4d7a;
-    }
+<html>
+<style>
+  body {
+    font-family: Arial;
+    background-color: #f5f5f5;
+  }
 
-    .section {
-      background: white;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-    }
+  h1, h2, h3 {
+    color: #2a4d7a;
+  }
 
-    button {
-      display: block;
-      margin: 10px auto;
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Banner -->
+  .section {
+    background: white;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+</style>
+    <head>
   <img src="WebBanner2023.png" alt="Banner" width="1200" height="300">
+    <h1><b>ENG0018 Computer Laboratory 2025/26</b></h1>
+    <h2>Student URN: 6919631</h2>
+<hr>
+<h2 style="font-family:calibri;"><b>Conference paper: To what extent does the use of nanotechnology improve the sustainability and efficiency of current civil infrastructural techniques?</b></h2>
+<hr>
+<!DOCTYPE html>
 
-  <!-- Header -->
-  <h1><b>ENG0018 Computer Laboratory 2025/26</b></h1>
-  <h2>Student URN: 6919631</h2>
-  <hr>
-  <h2 style="font-family:calibri;">
-    <b>Conference paper: To what extent does the use of nanotechnology improve the sustainability and efficiency of current civil infrastructural techniques?</b>
-  </h2>
-  <hr>
+<html>
 
-  <!-- Total Word Count -->
-  <p id="totalWordCount"></p>
-  <hr>
+    <body>
+      <p id="totalWordCount"></p>
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'siham-uni';
+        const repo = 'FY6919631';
+       
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+               
+                // Displaying the time on load
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+        }
+    }
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+    // Initial load to display the time on page load
+    window.onload = getLastUpdatedTime;
+</script>
 
-  <!-- Last Updated Section -->
-  <div id="last-updated">Loading last update time...</div>
-  <button onclick="verifyLastUpdatedTime()">Verify Last Modified Time</button>
 
-  <!-- Scripts -->
-  <script>
-    // ======================= WORD COUNT =======================
-<!-- ================= TOTAL WORD COUNT ================= -->
+ <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
 <p id="totalWordCount"></p>
 <hr>
-
 <script>
-  // ===================== FIXED WORD COUNT FUNCTION =====================
-  // Counts all words inside the main article, including intro and analysis
-  function displayWordCount(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (!element) return 0; // If element doesn't exist
-    const text = element.textContent; 
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById("Main-Article").textContent;
+    // Split text into words based on spaces and filter out any empty strings
     const wordArray = text.trim().split(/\s+/);
-    return wordArray.filter(word => word.length > 0).length;
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
   }
-
+  // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
-    // =================== ADDED ===================
-    // Count all words inside your main article div
-    const totalWords = displayWordCount("main-article");
-    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWords}`;
-    // =================== END ADDED ===================
+    // Calculate word count for each section and accumulate the total
+    const MainArticleCount = displayWordCount("Main_Article");
+    const AnalysisAndDiscussionCount = displayWordCount("Analysis_and_Discussion_InText");
+    // Calculate the sum of all selected sections
+    const totalWordCount = MainArticleCount + AnalysisAndDiscussionCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
-
-  // =================== ADDED ===================
-  // Run when page loads
-  window.addEventListener("load", displayTotalWordCount);
-  // =================== END ADDED ===================
+    // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
 </script>
-{
-    // ======================= GITHUB LAST UPDATED =======================
-    async function getLastUpdatedTime() {
-      const username = 'siham-uni';
-      const repo = 'FY6919631';
-      const url = `https://api.github.com/repos/${username}/${repo}/commits`;
-
-      try {
-        const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
-        if (!response.ok) throw new Error(`Error: ${response.status} - ${response.statusText}`);
-
-        const commits = await response.json();
-        if (commits && commits.length > 0) {
-          const lastCommitDate = new Date(commits[0].commit.committer.date);
-          document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
-        } else {
-          document.getElementById('last-updated').innerText = 'No commits found in the repository.';
-        }
-      } catch (error) {
-        console.error('Error fetching last update time:', error);
-        document.getElementById('last-updated').innerText = 'Error fetching update time. Please check repository details.';
-      }
-    }
-
-    async function verifyLastUpdatedTime() {
-      document.getElementById('last-updated').innerText = 'Verifying...';
-      await getLastUpdatedTime();
-      alert("Last modified time has been successfully verified from GitHub API.");
-    }
-
-    // ======================= RUN ON PAGE LOAD =======================
-    window.addEventListener("load", function() {
-      displayTotalWordCount();
-      getLastUpdatedTime();
-    });
-  </script>
-
-</body>
-</html>
 <!-- ================= TABLE OF CONTENTS ================= -->
 
 <!table of contents>
