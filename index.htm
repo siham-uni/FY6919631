@@ -16,51 +16,55 @@
     <body>
 
 <!-- ================= TIMESTAMP + WORD COUNT ================= -->
-<div class="infoblock">
-  <p>
-    <b>Timestamp:</b> <span id="page-timestamp">—</span>
-    <button id="verify-timestamp">Validate</button>
-    <span id="timestamp-note" class="note"></span>
-  </p>
-
-  <p>
-    <b>Word count:</b> <span id="wordcount">—</span>
-    <span id="wordcount-result" class="note"></span>
-  </p>
-</div>
-
+<!-- Placeholder for total word count -->
+<p id="totalWordCount"></p>
+<hr>
 <script>
-  // Set timestamp
-  document.getElementById("page-timestamp").textContent = new Date().toLocaleString();
-
-  // Validate button
-  document.getElementById("verify-timestamp").onclick = function() {
-    const ts = new Date(document.getElementById("page-timestamp").textContent);
-    const diff = new Date() - ts;
-    const note = document.getElementById("timestamp-note");
-    if(diff < 60*1000) { // less than 1 min old
-      note.textContent = "✅ Timestamp is valid.";
-      note.style.color = "green";
-    } else {
-      note.textContent = "❌ Timestamp is too old.";
-      note.style.color = "red";
-    }
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
   }
-
-  // Simple word count
-  const content = document.body.innerText || "";
-  const count = content.trim().split(/\s+/).length;
-  document.getElementById("wordcount").textContent = count;
-  document.getElementById("wordcount-result").textContent = "Word count calculated.";
+  // Function to calculate and display total word count from selected sections
+  function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
+    const IntroductionCount = displayWordCount("Introduction_InText");
+    const AnalysisCount = displayWordCount("Analysis_InText");
+    // Calculate the sum of all selected sections
+    const totalWordCount = IntroductionCount + AnalysisCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+  }
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
 </script>
 <!-- ================= TABLE OF CONTENTS ================= -->
 
-<h2><u>Table of Contents</u></h2>
-<ol>
-  <li><a href="#abstract">Abstract</a></li>
-  <li><a href="#article">Main Article</a></li>
-  <li><a href="#references">References</a></li>
-</ol>
+<!table of contents>
+        <table>
+<tr>
+    <th><h3>Table of contents</h3></th>
+</tr>
+            <tr>
+                <td><a href="#Abstract">Abstract</td>
+            </tr>
+            <tr>
+                <td><a href="#Introduction">Introduction</td>
+            </tr>
+            <tr>
+                <td><a href="#Analysis and Discussion">Analysis and Discussion</td>
+            </tr>
+
+            <tr>
+                <td><a href="#References">References</td>
+            </tr>
+        </table>
 
 <!-- ================= ABSTRACT ================= -->
 
@@ -77,7 +81,7 @@ about the ethics, pricing and availability of these materials.
 <h2 id="article"><u>Main Article</u></h2>
 
 <div id="main-article">
-
+<h3 id="Introduction">References</h3>
 <h3>Current issues with materials used in civil infrastructural techniques</h3>
 
 <p>
@@ -113,7 +117,7 @@ Nanotechnology also allows for the development of surfaces that have function, w
 <p>
 However, despite these advantages, there are significant limitations and challenges that come with the use of nanotechnology in civil engineering. The main concern involves the cost of producing nanomaterials. In addition, the long-term environmental and health effects of nanoparticle exposure remain under-researched (Donaldson & Poland, 2013).
 </p>
-
+<h3 id="Analysis and Discussion">Analysis and Discussion</h3>
 <p>
 Overall, while nanotechnology has the potential to enhance sustainability and efficiency, its implementation is hindered by economic, regulatory, and ethical challenges.
 </p>
